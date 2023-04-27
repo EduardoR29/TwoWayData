@@ -1,0 +1,66 @@
+<nav class="nav navbar-dark bg-primary">
+  <a href="" class="navbar-brand">
+    <img
+    width="50"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  /> Ejemplo de uso de two way data binding
+  </a>
+</nav>
+<div class="container">
+  <div class = "row">
+  <div class="col-md-4 mt-4" >
+  <img  src="./../assets/logo-tec" alt="Logotipo TEC" class="logo-tec">
+  </div>
+
+<div class="col-md-8 mt-4">
+  <ul class="list-group">
+    <li *ngFor="let alumno of alumnosArray"
+    (click)="openforEdit(alumno)"
+     [class.active]="alumno == selectAlumno" class="list-group-item list-group-item-action">
+      <span class="badge bg-info">{{alumno.id}}</span>{{alumno.nombre}}->{{alumno.grado}}-{{alumno.edad}}
+    </li>
+  </ul>
+  <div class="col-md-12">
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Grado</th>
+          <th>Edad</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr  *ngFor="let alumno of alumnosArray"
+          (click)="openforEdit(alumno)">
+            <td>{{alumno.id}}</td>
+            <td>{{alumno.nombre}}</td>
+            <td>{{alumno.grado}}</td>
+            <td>{{alumno.edad}}</td>
+          </tr>
+        </tbody>
+
+    </table>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Inserta un numero alumno</div>
+        <div class="form-group mb-3">
+          <input [(ngModel)]="selectAlumno.nombre" type="text" class="form-control" placeholder="Inserta un nombre">
+        </div>
+        <div class="form-group mb-3">
+          <input [(ngModel)]="selectAlumno.grado" type="text" class="form-control" placeholder="Inserta un grado">
+        </div>
+        <div class="form-group mb-3">
+          <input [(ngModel)]="selectAlumno.edad" type="number" class="form-control" placeholder="Inserta un edad">
+        </div>
+        <button *ngIf="selectAlumno.id ===0"(click)="addorEdit()" class="btn btn-primary">Agregar</button>
+        <button *ngIf="selectAlumno.id !==0"(click)="addorEdit()" class="btn btn-warning">Modificar</button>
+        <button *ngIf="selectAlumno.id !==0"(click)="delete()" class="btn btn-danger ms-3">Eliminar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
